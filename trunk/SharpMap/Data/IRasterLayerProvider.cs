@@ -1,4 +1,4 @@
-// Copyright 2005, 2006 - Morten Nielsen (www.iter.dk)
+﻿// Copyright 2006, 2007 - Rory Plaire (codekaizen@gmail.com)
 //
 // This file is part of SharpMap.
 // SharpMap is free software; you can redistribute it and/or modify
@@ -15,26 +15,27 @@
 // along with SharpMap; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
 
-namespace SharpMap.Styles
+using SharpMap.Geometries;
+using System.IO;
+
+namespace SharpMap.Data
 {
-    /// <summary>
-    /// Defines an interface for defining layer styles
-    /// </summary>
-    public interface IStyle
+    public interface IRasterLayerProvider : ILayerProvider
     {
         /// <summary>
-        /// Gets or sets the minimum zoom value where the style is applied
+        /// Retrieves a <see cref="Stream"/> for the raster data that 
+        /// are intersected by <paramref name="geom"/>.
         /// </summary>
-        double MinVisible { get; set; }
+        /// <param name="geom">Geometry to intersect with.</param>
+        /// <returns>A Stream to access the raster data of the result.</returns>
+        Stream ExecuteIntersectionQuery(Geometry geom);
 
         /// <summary>
-        /// Gets or sets the maximum zoom value where the style is applied
+        /// Retrieves a <see cref="Stream"/> for the raster data that 
+        /// are intersected by <paramref name="box"/>.
         /// </summary>
-        double MaxVisible { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether objects in this style is rendered or not
-        /// </summary>
-        bool Enabled { get; set; }
+        /// <param name="box">BoundingBox to intersect with.</param>
+        /// <returns>A Stream to access the raster data of the result.</returns>
+        Stream ExecuteIntersectionQuery(BoundingBox box);
     }
 }

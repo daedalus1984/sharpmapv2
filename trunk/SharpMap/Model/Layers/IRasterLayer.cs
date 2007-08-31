@@ -1,4 +1,4 @@
-// Copyright 2005, 2006 - Morten Nielsen (www.iter.dk)
+﻿// Copyright 2006, 2007 - Rory Plaire (codekaizen@gmail.com)
 //
 // This file is part of SharpMap.
 // SharpMap is free software; you can redistribute it and/or modify
@@ -15,26 +15,13 @@
 // along with SharpMap; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
 
-namespace SharpMap.Styles
+using SharpMap.Data;
+using SharpMap.Layers;
+
+namespace SharpMap.Layers
 {
-    /// <summary>
-    /// Defines an interface for defining layer styles
-    /// </summary>
-    public interface IStyle
+    public interface IRasterLayer : ILayer
     {
-        /// <summary>
-        /// Gets or sets the minimum zoom value where the style is applied
-        /// </summary>
-        double MinVisible { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum zoom value where the style is applied
-        /// </summary>
-        double MaxVisible { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether objects in this style is rendered or not
-        /// </summary>
-        bool Enabled { get; set; }
+        new IRasterLayerProvider DataSource { get; }
     }
 }
